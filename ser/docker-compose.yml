@@ -1,0 +1,33 @@
+version: "3.6"
+services:
+  t2s-app-mysql:
+    image: mysql:8.0.20
+    container_name: t2s-app-mysql
+    volumes:
+      - .:/t2s-app
+    environment:
+      MYSQL_ROOT_PASSWORD: t2s
+      MYSQL_DATABASE: t2s
+      MYSQL_USER: root
+    ports:
+      - "3306:3306"
+    networks:
+      - t2s-app-network
+
+  t2s-app-api:
+    build:
+      context: .
+      dockerfile: docker/t2s-app-api.dockerfile
+    container_name: t2s-app-api
+    env_file:
+      - .env
+    ports:
+      - "8050:8050"
+    depends_on:
+      - "t2s-app-mysql"
+    networks:
+      - t2s-app-network
+
+networks:
+  t2s-app-network:
+    driver: bridge

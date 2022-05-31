@@ -1,0 +1,25 @@
+{
+	"env": {
+		"node": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"extends": [
+		"airbnb-typescript/base",
+		"prettier",
+		"prettier/@typescript-eslint"
+	],
+	"plugins": ["@typescript-eslint", "import", "prettier", "json"],
+	"rules": {
+		"@typescript-eslint/no-unused-vars": "warn",
+		"import/prefer-default-export": "off",
+		"consistent-return": "warn",
+		"prettier/prettier": "error",
+		"no-unused-vars": "warn",
+		"import/first": "off",
+		"no-console": "warn",
+		"no-new": "off"
+	}
+}
